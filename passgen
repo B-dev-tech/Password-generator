@@ -1,2 +1,9 @@
-chmod +x passgen
-./passgen --rich
+#!/bin/bash
+# Check folder
+if [ "$(basename "$PWD")" != "password-generator" ]; then
+    echo "Error: You must run this program from the 'password-generator' folder!"
+    exit 1
+fi
+
+# Run Python script with arguments
+python3 password_generator.py "$@"
