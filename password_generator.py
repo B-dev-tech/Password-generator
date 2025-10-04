@@ -1,8 +1,3 @@
----
-
-## 2️⃣ `password_generator.py`
-
-```python
 #!/usr/bin/env python3
 import sys
 from rich.console import Console
@@ -13,8 +8,8 @@ import random, string, time, os
 
 console = Console()
 
-# Check folder
-if os.path.basename(os.getcwd()) != "password-generator":
+# Check folder (ignore case)
+if os.path.basename(os.getcwd()).lower() != "password-generator":
     console.print("[red]Error:[/red] You must run this program from the 'password-generator' folder!")
     exit(1)
 
@@ -31,8 +26,7 @@ def generate_password(length=12, letter_case="both", use_numbers=True, use_symbo
     if use_symbols:
         chars += "!@#$%^&*()-_=+[]{}|;:,.<>?/"
 
-    password = ''.join(random.choice(chars) for _ in range(length))
-    return password
+    return ''.join(random.choice(chars) for _ in range(length))
 
 def main():
     if use_rich:
@@ -50,7 +44,6 @@ def main():
         console.print("\n[bold magenta]Your password is:[/bold magenta]")
         console.print(Panel(f"[white on black]{password}[/white on black]", expand=False))
     else:
-        # Basic CLI
         length = int(input("Enter password length: "))
         use_symbols = input("Use symbols? (y/n): ").lower() == "y"
         letter_case = input("Letter case (lowercase / uppercase / both): ").lower()
